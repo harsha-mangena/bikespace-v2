@@ -33,7 +33,7 @@ with open('bikespace_schema_translated_fixed.csv') as csv_file:
             json_payload = json.dumps(payload)
             headers =  {"Content-Type": "application/json"}
             print(f'Posting: {json_payload}')
-            response = requests.request("POST", url, json=payload, headers=headers)
+            response = requests.request("POST", url, json=payload, headers=headers, timeout=60)
             print(response.text)
         print(f'Processed {line_count} lines')
         time.sleep(1)
