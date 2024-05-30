@@ -1,5 +1,6 @@
 from bikespace_api.api.models import Submission, IssueType, ParkingDuration
 from datetime import datetime
+import math
 
 def test_new_submission(new_submission):
     """
@@ -9,7 +10,7 @@ def test_new_submission(new_submission):
     """
     datetime_string = "2023-08-19 15:17:17.234235"
     datetime_object = datetime.strptime(datetime_string, '%Y-%m-%d %H:%M:%S.%f')
-    assert new_submission.latitude == 43.6532
+    assert math.isclose(new_submission.latitude, 43.6532, rel_tol=1e-09, abs_tol=0.0)
     assert new_submission.longitude == -79.3832
     assert new_submission.issues == [IssueType.ABANDONDED]
     assert new_submission.parking_duration == ParkingDuration.MINUTES
